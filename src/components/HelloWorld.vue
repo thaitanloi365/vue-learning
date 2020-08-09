@@ -5,8 +5,8 @@
 </template>
 
 <script lang="ts">
-import ProfilePage from "@/components/ProfilePage.vue";
-import { Component, Vue } from "vue-property-decorator";
+import ProfilePage from '@/components/ProfilePage.vue';
+import { Component, Vue } from 'vue-property-decorator';
 
 @Component({
   components: {

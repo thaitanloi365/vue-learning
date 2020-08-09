@@ -11,30 +11,38 @@
     </div>
     <input v-model="user.name" />
     <button @click="count = 0">Reset count</button>
+    <div>{{ postsState.response.value }}</div>
   </div>
 </template>
 <script lang="ts">
-import ContactInfo from "@/components/ContactInfo.vue";
-import { Vue, Component, Watch } from "vue-property-decorator";
+import ContactInfo from '@/components/ContactInfo.vue';
+import { Vue, Component } from 'vue-property-decorator';
+import useAxiosVue from '@/composables/useAxios';
+
 @Component({
   components: {
     ContactInfo,
+  },
+  setup() {
+    const postsState = useAxiosVue({
+      triggerOnStart: true,
+      url: 'https://my-json-server.typicode.com/typicode/demo/posts',
+    });
+
+    return {
+      postsState,
+    };
   },
 })
 export default class Profile extends Vue {
   count = 122;
 
   user = {
-    name: "John Smith",
-    profilePicture: "./profile-pic.jpg",
-    emailAddress: "john@smith.com",
-    twitterHandle: "johnsmith",
-    instagram: "johnsmith345",
+    name: 'John Smith',
+    profilePicture: './profile-pic.jpg',
+    emailAddress: 'john@smith.com',
+    twitterHandle: 'johnsmith',
+    instagram: 'johnsmith345',
   };
-
-  @Watch("count")
-  onCountChanged(value: number, oldvalue: number) {
-    console.log("*** value = ", value, "----- old value = ", oldvalue);
-  }
 }
 </script>

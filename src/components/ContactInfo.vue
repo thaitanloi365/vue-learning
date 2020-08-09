@@ -8,10 +8,10 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Prop, Watch, PropSync } from "vue-property-decorator";
+import { Component, Vue, Prop, PropSync } from 'vue-property-decorator';
 @Component
 export default class ContactInfo extends Vue {
-  @PropSync("count", { type: Number, default: 0 })
+  @PropSync('count', { type: Number, default: 0 })
   syncedCount!: number;
 
   @Prop()
@@ -22,11 +22,6 @@ export default class ContactInfo extends Vue {
 
   @Prop()
   instagram!: string;
-
-  @Watch("syncedCount")
-  onChange(value: string, oldValue: string) {
-    console.log("syncedCount oldValue", oldValue, "---", "value", value);
-  }
 
   created() {
     this.syncedCount = 0;
